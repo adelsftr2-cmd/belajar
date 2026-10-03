@@ -1,0 +1,3853 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="theme-color" content="#ff4f9a">
+<title>Rumah Belajar Anak</title>
+
+<style>
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+    -webkit-tap-highlight-color:transparent;
+}
+
+body{
+    font-family:"Arial Rounded MT Bold",Arial,sans-serif;
+    background:
+        linear-gradient(135deg,#fdf5ff,#eefaff,#fff9ed);
+    color:#183b70;
+    min-height:100vh;
+    overflow-x:hidden;
+}
+
+button,
+input{
+    font-family:inherit;
+}
+
+button{
+    border:0;
+    cursor:pointer;
+}
+
+button:active{
+    transform:scale(.96);
+}
+
+/* ==================================================
+   BACKGROUND
+================================================== */
+
+.bg{
+    position:fixed;
+    inset:0;
+    overflow:hidden;
+    pointer-events:none;
+    z-index:-1;
+}
+
+.cloud{
+    position:absolute;
+    width:150px;
+    height:70px;
+    background:white;
+    border-radius:100px;
+    opacity:.55;
+}
+
+.cloud:before,
+.cloud:after{
+    content:"";
+    position:absolute;
+    background:white;
+    border-radius:50%;
+}
+
+.cloud:before{
+    width:80px;
+    height:80px;
+    left:25px;
+    top:-35px;
+}
+
+.cloud:after{
+    width:65px;
+    height:65px;
+    right:20px;
+    top:-25px;
+}
+
+.c1{
+    top:110px;
+    left:250px;
+}
+
+.c2{
+    top:500px;
+    right:80px;
+    transform:scale(.7);
+}
+
+.bubble{
+    position:absolute;
+    border-radius:50%;
+    opacity:.25;
+    animation:float 7s ease-in-out infinite;
+}
+
+.b1{
+    width:180px;
+    height:180px;
+    background:#ff9ecb;
+    left:-70px;
+    top:300px;
+}
+
+.b2{
+    width:130px;
+    height:130px;
+    background:#75dfff;
+    right:-40px;
+    top:150px;
+}
+
+.b3{
+    width:100px;
+    height:100px;
+    background:#ffe27d;
+    right:200px;
+    bottom:80px;
+}
+
+@keyframes float{
+    0%,100%{
+        transform:translateY(0);
+    }
+    50%{
+        transform:translateY(-18px);
+    }
+}
+
+/* ==================================================
+   HEADER
+================================================== */
+
+.header{
+    height:82px;
+    background:rgba(255,255,255,.94);
+    border-bottom:1px solid #e7eff8;
+    display:flex;
+    align-items:center;
+    padding:10px 25px;
+    position:sticky;
+    top:0;
+    z-index:100;
+    box-shadow:0 5px 20px rgba(45,87,130,.08);
+}
+
+.header-inner{
+    width:100%;
+    max-width:1500px;
+    margin:auto;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:20px;
+}
+
+.brand{
+    display:flex;
+    align-items:center;
+    gap:13px;
+}
+
+.brand-logo{
+    font-size:48px;
+    filter:drop-shadow(0 4px 4px rgba(0,0,0,.1));
+}
+
+.brand-text h1{
+    font-size:30px;
+    line-height:1;
+    background:linear-gradient(
+        90deg,
+        #ff318b,
+        #148be8,
+        #ff9c00
+    );
+    -webkit-background-clip:text;
+    color:transparent;
+    font-weight:900;
+}
+
+.brand-text p{
+    margin-top:6px;
+    font-size:14px;
+    color:#577092;
+}
+
+.motto{
+    background:white;
+    padding:12px 25px;
+    border-radius:40px;
+    box-shadow:0 6px 18px rgba(0,0,0,.08);
+    display:flex;
+    align-items:center;
+    gap:10px;
+    font-size:14px;
+    color:#2d67a0;
+}
+
+.motto span{
+    font-size:28px;
+}
+
+.profile{
+    background:#eef8ff;
+    padding:8px 15px 8px 8px;
+    border-radius:40px;
+    display:flex;
+    align-items:center;
+    gap:10px;
+    min-width:180px;
+}
+
+.profile-avatar{
+    width:48px;
+    height:48px;
+    border-radius:50%;
+    background:linear-gradient(135deg,#ffd36b,#ff8fb7);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:31px;
+}
+
+.profile small{
+    display:block;
+    color:#55718f;
+    font-size:12px;
+}
+
+.profile strong{
+    font-size:17px;
+    color:#173f78;
+}
+
+/* ==================================================
+   LAYOUT
+================================================== */
+
+.layout{
+    max-width:1500px;
+    margin:auto;
+    display:grid;
+    grid-template-columns:230px 1fr 270px;
+    gap:20px;
+    padding:20px;
+}
+
+/* ==================================================
+   SIDEBAR
+================================================== */
+
+.sidebar{
+    background:rgba(255,255,255,.9);
+    border-radius:25px;
+    padding:15px;
+    height:fit-content;
+    box-shadow:0 8px 25px rgba(40,80,120,.08);
+    position:sticky;
+    top:100px;
+}
+
+.nav-title{
+    color:#9aaabe;
+    font-size:11px;
+    padding:10px 15px;
+    text-transform:uppercase;
+    letter-spacing:1px;
+}
+
+.nav-btn{
+    width:100%;
+    display:flex;
+    align-items:center;
+    gap:13px;
+    padding:14px;
+    margin-bottom:7px;
+    border-radius:16px;
+    background:transparent;
+    color:#234b7b;
+    text-align:left;
+    font-size:15px;
+    font-weight:bold;
+    transition:.2s;
+}
+
+.nav-btn:hover{
+    background:#f3f6ff;
+}
+
+.nav-btn.active{
+    background:linear-gradient(
+        90deg,
+        #ff3e91,
+        #ff5ba4
+    );
+    color:white;
+    box-shadow:0 8px 18px rgba(255,62,145,.2);
+}
+
+.nav-icon{
+    width:30px;
+    text-align:center;
+    font-size:23px;
+}
+
+.side-character{
+    margin-top:20px;
+    background:linear-gradient(
+        180deg,
+        #dff8ff,
+        #fff0fb
+    );
+    border-radius:22px;
+    padding:15px;
+    text-align:center;
+    overflow:hidden;
+}
+
+.side-character .person{
+    font-size:80px;
+}
+
+.side-character h3{
+    color:#17447d;
+    font-size:17px;
+    line-height:1.3;
+}
+
+.side-character p{
+    color:#637d99;
+    font-size:13px;
+    margin-top:8px;
+}
+
+/* ==================================================
+   MAIN
+================================================== */
+
+.main{
+    min-width:0;
+}
+
+.banner{
+    min-height:205px;
+    background:
+        linear-gradient(
+            100deg,
+            #ffe7ef,
+            #fff8ce,
+            #e4f5ff
+        );
+    border-radius:28px;
+    padding:25px 30px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    overflow:hidden;
+    position:relative;
+    box-shadow:0 8px 25px rgba(70,100,130,.08);
+}
+
+.banner-text{
+    position:relative;
+    z-index:2;
+}
+
+.banner-text h2{
+    font-size:35px;
+    color:#123e7b;
+    line-height:1.15;
+}
+
+.banner-text h2 span{
+    color:#ff2082;
+}
+
+.banner-text p{
+    margin-top:13px;
+    color:#25548a;
+    font-size:16px;
+}
+
+.banner-stars{
+    margin-top:12px;
+    color:#ffb900;
+    font-size:22px;
+}
+
+.banner-character{
+    font-size:145px;
+    position:relative;
+    z-index:2;
+    animation:characterFloat 3s ease-in-out infinite;
+}
+
+@keyframes characterFloat{
+    0%,100%{
+        transform:translateY(0);
+    }
+    50%{
+        transform:translateY(-10px);
+    }
+}
+
+.rainbow{
+    position:absolute;
+    right:10px;
+    bottom:-40px;
+    font-size:120px;
+    opacity:.8;
+}
+
+/* ==================================================
+   CLASS CARDS
+================================================== */
+
+.class-title{
+    margin:23px 0 13px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+}
+
+.class-title h2{
+    font-size:22px;
+    color:#183f78;
+}
+
+.class-title span{
+    color:#71849c;
+    font-size:13px;
+}
+
+.class-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:18px;
+}
+
+.class-card{
+    min-height:250px;
+    border-radius:27px;
+    padding:20px;
+    position:relative;
+    overflow:hidden;
+    box-shadow:0 9px 24px rgba(40,80,120,.09);
+    transition:.25s;
+}
+
+.class-card:hover{
+    transform:translateY(-5px);
+}
+
+.tk-card{
+    background:
+        linear-gradient(
+            135deg,
+            #fff0f8,
+            #ffd6eb
+        );
+    border:3px solid #ffc3e0;
+}
+
+.sd-card{
+    background:
+        linear-gradient(
+            135deg,
+            #edf9ff,
+            #cfeeff
+        );
+    border:3px solid #a9ddfa;
+}
+
+.class-content{
+    position:relative;
+    z-index:3;
+}
+
+.class-icon{
+    font-size:70px;
+    margin-bottom:5px;
+}
+
+.class-card h3{
+    font-size:31px;
+    color:#183f78;
+}
+
+.tk-card h3{
+    color:#e82985;
+}
+
+.class-card p{
+    margin-top:4px;
+    font-size:14px;
+    line-height:1.5;
+    color:#527090;
+}
+
+.class-button{
+    margin-top:17px;
+    width:100%;
+    padding:13px;
+    border-radius:30px;
+    color:white;
+    font-size:15px;
+    font-weight:bold;
+}
+
+.tk-card .class-button{
+    background:linear-gradient(
+        90deg,
+        #ff2688,
+        #ff579f
+    );
+}
+
+.sd-card .class-button{
+    background:linear-gradient(
+        90deg,
+        #168fe8,
+        #36b8fa
+    );
+}
+
+.class-decoration{
+    position:absolute;
+    right:-5px;
+    bottom:-20px;
+    font-size:125px;
+    opacity:.18;
+}
+
+/* ==================================================
+   BENEFIT CARDS
+================================================== */
+
+.benefits{
+    display:grid;
+    grid-template-columns:repeat(5,1fr);
+    gap:12px;
+    margin-top:18px;
+}
+
+.benefit{
+    border-radius:20px;
+    padding:18px 10px;
+    min-height:120px;
+    text-align:center;
+    box-shadow:0 5px 15px rgba(0,0,0,.05);
+}
+
+.benefit:nth-child(1){
+    background:#e6e1ff;
+}
+
+.benefit:nth-child(2){
+    background:#d9ffd9;
+}
+
+.benefit:nth-child(3){
+    background:#ffdcef;
+}
+
+.benefit:nth-child(4){
+    background:#fff4c9;
+}
+
+.benefit:nth-child(5){
+    background:#d9f4ff;
+}
+
+.benefit-icon{
+    font-size:36px;
+}
+
+.benefit strong{
+    display:block;
+    margin-top:8px;
+    font-size:13px;
+    color:#244c7e;
+}
+
+/* ==================================================
+   RIGHT PANEL
+================================================== */
+
+.right-panel{
+    display:flex;
+    flex-direction:column;
+    gap:16px;
+}
+
+.info-card{
+    background:rgba(255,255,255,.9);
+    border-radius:23px;
+    padding:18px;
+    box-shadow:0 7px 22px rgba(40,80,120,.07);
+}
+
+.info-card h3{
+    color:#173f78;
+    font-size:18px;
+    margin-bottom:14px;
+}
+
+.stats{
+    display:grid;
+    gap:10px;
+}
+
+.stat{
+    background:#f7faff;
+    border-radius:15px;
+    padding:12px;
+    display:flex;
+    align-items:center;
+    gap:12px;
+}
+
+.stat-icon{
+    font-size:31px;
+}
+
+.stat small{
+    color:#67809b;
+}
+
+.stat strong{
+    display:block;
+    font-size:22px;
+    color:#164680;
+    margin-top:2px;
+}
+
+.popular{
+    display:grid;
+    gap:9px;
+}
+
+.popular-item{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    padding:11px;
+    border-radius:14px;
+    font-size:13px;
+    font-weight:bold;
+}
+
+.popular-item:nth-child(1){
+    background:#ffe3ef;
+    color:#a52260;
+}
+
+.popular-item:nth-child(2){
+    background:#ddffd9;
+    color:#267337;
+}
+
+.popular-item:nth-child(3){
+    background:#e9ddff;
+    color:#6540a3;
+}
+
+.popular-item:nth-child(4){
+    background:#fff0cc;
+    color:#996016;
+}
+
+.popular-item:nth-child(5){
+    background:#dff4ff;
+    color:#18678d;
+}
+
+.quote-card{
+    background:
+        linear-gradient(
+            135deg,
+            #fff1f8,
+            #fffdf0
+        );
+    min-height:150px;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+}
+
+.quote-card .quote-icon{
+    font-size:40px;
+}
+
+.quote-card h3{
+    color:#df287b;
+    font-size:20px;
+    line-height:1.3;
+}
+
+/* ==================================================
+   SCREEN SYSTEM
+================================================== */
+
+.screen{
+    display:none;
+}
+
+.screen.active{
+    display:block;
+}
+
+/* ==================================================
+   GAME MENU
+================================================== */
+
+.game-menu{
+    background:rgba(255,255,255,.95);
+    border-radius:28px;
+    padding:25px;
+    box-shadow:0 10px 30px rgba(0,0,0,.08);
+}
+
+.game-menu-header{
+    display:flex;
+    align-items:center;
+    gap:13px;
+    margin-bottom:20px;
+}
+
+.back-button{
+    width:46px;
+    height:46px;
+    border-radius:15px;
+    background:#edf4ff;
+    font-size:21px;
+}
+
+.game-menu-header h2{
+    color:#183f78;
+}
+
+.game-menu-header p{
+    margin-top:4px;
+    color:#71849c;
+    font-size:13px;
+}
+
+.games-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:14px;
+}
+
+.game-card{
+    background:white;
+    border:2px solid #edf1f8;
+    border-radius:20px;
+    padding:17px;
+    min-height:145px;
+    text-align:left;
+    transition:.2s;
+}
+
+.game-card:hover{
+    transform:translateY(-4px);
+    border-color:#ff78ae;
+    box-shadow:0 8px 20px rgba(255,80,150,.12);
+}
+
+.game-card-icon{
+    font-size:42px;
+}
+
+.game-card h3{
+    color:#244d7f;
+    font-size:16px;
+    margin-top:8px;
+}
+
+.game-card p{
+    color:#8192a7;
+    font-size:12px;
+    margin-top:5px;
+}
+
+/* ==================================================
+   GAME PLAY
+================================================== */
+
+.game-play{
+    background:white;
+    border-radius:28px;
+    padding:24px;
+    box-shadow:0 10px 30px rgba(0,0,0,.08);
+}
+
+.game-top{
+    display:flex;
+    align-items:center;
+    gap:12px;
+}
+
+.game-progress{
+    flex:1;
+}
+
+.progress-text{
+    display:flex;
+    justify-content:space-between;
+    color:#71849c;
+    font-size:13px;
+    margin-bottom:7px;
+}
+
+.progress-bg{
+    height:10px;
+    background:#edf0f6;
+    border-radius:20px;
+    overflow:hidden;
+}
+
+.progress-bar{
+    height:100%;
+    width:0;
+    background:linear-gradient(
+        90deg,
+        #ff3d93,
+        #8c65ff,
+        #20a8ed
+    );
+    transition:.4s;
+}
+
+.score{
+    background:#fff3c6;
+    padding:11px 15px;
+    border-radius:15px;
+    font-weight:bold;
+}
+
+.question{
+    text-align:center;
+    padding:35px 10px;
+}
+
+.visual{
+    font-size:105px;
+    min-height:125px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+
+.question h2{
+    color:#173f78;
+    font-size:27px;
+    margin:15px 0 20px;
+}
+
+.options{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:13px;
+    max-width:700px;
+    margin:auto;
+}
+
+.option{
+    min-height:68px;
+    background:#f6f8ff;
+    border:3px solid #e6eafa;
+    border-radius:18px;
+    font-size:19px;
+    font-weight:bold;
+    color:#234b7b;
+    transition:.2s;
+}
+
+.option:hover{
+    background:#eef1ff;
+    border-color:#8b7fff;
+}
+
+.option.correct{
+    background:#c9ffd8;
+    border-color:#27bb58;
+}
+
+.option.wrong{
+    background:#ffd0d0;
+    border-color:#ff4c4c;
+}
+
+.option:disabled{
+    cursor:default;
+}
+
+.sound-button{
+    margin-top:20px;
+    padding:14px 25px;
+    background:linear-gradient(
+        90deg,
+        #8a62ff,
+        #b15dff
+    );
+    color:white;
+    border-radius:18px;
+    font-weight:bold;
+}
+
+.sound-status{
+    color:#788ba3;
+    margin-top:10px;
+    font-size:13px;
+}
+
+/* ==================================================
+   RESULT
+================================================== */
+
+.result{
+    background:white;
+    border-radius:28px;
+    padding:40px 20px;
+    text-align:center;
+    box-shadow:0 10px 30px rgba(0,0,0,.08);
+}
+
+.trophy{
+    font-size:100px;
+    animation:trophy 1s infinite alternate;
+}
+
+@keyframes trophy{
+    to{
+        transform:translateY(-10px) rotate(3deg);
+    }
+}
+
+.result h2{
+    color:#173f78;
+    font-size:29px;
+    margin-top:10px;
+}
+
+.result-score{
+    font-size:40px;
+    color:#ff3490;
+    margin:12px 0;
+}
+
+.result-stars{
+    font-size:36px;
+}
+
+.result-buttons{
+    display:flex;
+    justify-content:center;
+    gap:10px;
+    flex-wrap:wrap;
+    margin-top:25px;
+}
+
+.result-button{
+    padding:14px 22px;
+    border-radius:16px;
+    background:#ff3e91;
+    color:white;
+    font-weight:bold;
+}
+
+/* ==================================================
+   DATA
+================================================== */
+
+.data-page{
+    background:white;
+    border-radius:28px;
+    padding:25px;
+    box-shadow:0 10px 30px rgba(0,0,0,.08);
+}
+
+.data-page h2{
+    color:#173f78;
+    margin-bottom:18px;
+}
+
+.data-item{
+    background:#f7faff;
+    padding:15px;
+    border-radius:17px;
+    margin-bottom:10px;
+    border-left:5px solid #ff4c9a;
+}
+
+.data-item strong{
+    color:#173f78;
+}
+
+.empty-data{
+    text-align:center;
+    padding:50px;
+    color:#8a9aaf;
+}
+
+/* ==================================================
+   FEEDBACK
+================================================== */
+
+.feedback{
+    position:fixed;
+    left:50%;
+    top:50%;
+    transform:translate(-50%,-50%) scale(.7);
+    opacity:0;
+    pointer-events:none;
+    background:white;
+    border-radius:28px;
+    padding:30px 45px;
+    text-align:center;
+    z-index:1000;
+    box-shadow:0 20px 60px rgba(0,0,0,.25);
+    transition:.25s;
+}
+
+.feedback.show{
+    opacity:1;
+    transform:translate(-50%,-50%) scale(1);
+}
+
+.feedback-icon{
+    font-size:70px;
+}
+
+.feedback h2{
+    color:#173f78;
+    margin-top:10px;
+}
+
+/* ==================================================
+   CONFETTI
+================================================== */
+
+.confetti{
+    position:fixed;
+    top:-30px;
+    z-index:2000;
+    pointer-events:none;
+    font-size:25px;
+    animation:confettiFall 3.5s linear forwards;
+}
+
+@keyframes confettiFall{
+    to{
+        transform:translateY(110vh) rotate(720deg);
+        opacity:0;
+    }
+}
+
+/* ==================================================
+   RESPONSIVE
+================================================== */
+
+@media(max-width:1100px){
+
+    .layout{
+        grid-template-columns:190px 1fr;
+    }
+
+    .right-panel{
+        grid-column:1 / -1;
+        display:grid;
+        grid-template-columns:1fr 1fr 1fr;
+    }
+
+    .motto{
+        display:none;
+    }
+
+    .games-grid{
+        grid-template-columns:repeat(2,1fr);
+    }
+}
+
+@media(max-width:750px){
+
+    .header{
+        height:auto;
+        padding:10px 12px;
+    }
+
+    .brand-text h1{
+        font-size:20px;
+    }
+
+    .brand-text p{
+        font-size:10px;
+    }
+
+    .brand-logo{
+        font-size:35px;
+    }
+
+    .profile{
+        min-width:auto;
+    }
+
+    .profile-avatar{
+        width:40px;
+        height:40px;
+        font-size:25px;
+    }
+
+    .profile div:last-child{
+        display:none;
+    }
+
+    .layout{
+        display:block;
+        padding:12px;
+    }
+
+    .sidebar{
+        position:static;
+        margin-bottom:14px;
+        display:flex;
+        overflow-x:auto;
+        padding:8px;
+        gap:5px;
+    }
+
+    .nav-title,
+    .side-character{
+        display:none;
+    }
+
+    .nav-btn{
+        min-width:115px;
+        margin:0;
+        justify-content:center;
+        flex-direction:column;
+        gap:3px;
+        padding:10px 7px;
+        font-size:11px;
+    }
+
+    .nav-icon{
+        font-size:21px;
+    }
+
+    .banner{
+        min-height:190px;
+        padding:22px;
+    }
+
+    .banner-text h2{
+        font-size:25px;
+    }
+
+    .banner-text p{
+        font-size:13px;
+    }
+
+    .banner-character{
+        font-size:90px;
+    }
+
+    .rainbow{
+        font-size:80px;
+    }
+
+    .class-grid{
+        grid-template-columns:1fr;
+    }
+
+    .benefits{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .right-panel{
+        display:block;
+    }
+
+    .info-card{
+        margin-top:14px;
+    }
+
+    .games-grid{
+        grid-template-columns:1fr 1fr;
+    }
+
+    .game-card{
+        min-height:135px;
+    }
+
+    .question h2{
+        font-size:22px;
+    }
+
+    .visual{
+        font-size:80px;
+    }
+}
+
+@media(max-width:420px){
+
+    .brand-text h1{
+        font-size:17px;
+    }
+
+    .banner-character{
+        font-size:70px;
+    }
+
+    .class-card{
+        min-height:220px;
+    }
+
+    .class-icon{
+        font-size:55px;
+    }
+
+    .class-card h3{
+        font-size:27px;
+    }
+
+    .benefits{
+        grid-template-columns:1fr 1fr;
+    }
+
+    .game-menu,
+    .game-play,
+    .data-page{
+        padding:16px;
+    }
+
+    .options{
+        grid-template-columns:1fr 1fr;
+    }
+
+    .option{
+        font-size:16px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="bg">
+    <div class="cloud c1"></div>
+    <div class="cloud c2"></div>
+    <div class="bubble b1"></div>
+    <div class="bubble b2"></div>
+    <div class="bubble b3"></div>
+</div>
+
+
+<!-- ==================================================
+     HEADER
+================================================== -->
+
+<header class="header">
+
+<div class="header-inner">
+
+    <div class="brand">
+
+        <div class="brand-logo">🏠</div>
+
+        <div class="brand-text">
+            <h1>Rumah Belajar Anak</h1>
+            <p>Belajar • Bermain • Jadi Anak Hebat</p>
+        </div>
+
+    </div>
+
+
+    <div class="motto">
+        <span>🌞</span>
+        <b>Setiap langkah kecil<br>
+        adalah kemajuan besar!</b>
+    </div>
+
+
+    <div class="profile">
+
+        <div class="profile-avatar">
+            🧒
+        </div>
+
+        <div>
+            <small>Halo,</small>
+            <strong id="profileName">
+                Anak Hebat
+            </strong>
+        </div>
+
+        <span>⌄</span>
+
+    </div>
+
+</div>
+
+</header>
+
+
+<!-- ==================================================
+     LAYOUT
+================================================== -->
+
+<div class="layout">
+
+
+<!-- ==================================================
+     SIDEBAR
+================================================== -->
+
+<aside class="sidebar">
+
+    <div class="nav-title">
+        MENU UTAMA
+    </div>
+
+    <button
+        id="navHome"
+        class="nav-btn active"
+        onclick="showDashboard()"
+    >
+        <span class="nav-icon">🏠</span>
+        Beranda
+    </button>
+
+    <button
+        class="nav-btn"
+        onclick="openClass('tk')"
+    >
+        <span class="nav-icon">🎮</span>
+        Pilih Kelas
+    </button>
+
+    <button
+        class="nav-btn"
+        onclick="openAllGames()"
+    >
+        <span class="nav-icon">📖</span>
+        Permainan
+    </button>
+
+    <button
+        class="nav-btn"
+        onclick="showData()"
+    >
+        <span class="nav-icon">📊</span>
+        Data Hasil
+    </button>
+
+    <button
+        class="nav-btn"
+        onclick="showSettings()"
+    >
+        <span class="nav-icon">⚙️</span>
+        Pengaturan
+    </button>
+
+
+    <div class="side-character">
+
+        <div class="person">
+            🧒
+        </div>
+
+        <h3>
+            Semangat<br>
+            Belajarnya!
+        </h3>
+
+        <p>
+            Kamu pasti bisa! 💖
+        </p>
+
+    </div>
+
+</aside>
+
+
+<!-- ==================================================
+     MAIN
+================================================== -->
+
+<main class="main">
+
+
+<!-- ================= DASHBOARD ================= -->
+
+<section id="dashboardScreen" class="screen active">
+
+    <div class="banner">
+
+        <div class="banner-text">
+
+            <h2>
+                Selamat Datang<br>
+                di <span>Rumah Belajar Anak</span>
+            </h2>
+
+            <p id="welcomeText">
+                Halo Anak Hebat! Yuk pilih kelas dan mulai belajar!
+            </p>
+
+            <div class="banner-stars">
+                ⭐ ⭐ ⭐
+            </div>
+
+        </div>
+
+        <div class="banner-character">
+            👧📚
+        </div>
+
+        <div class="rainbow">
+            🌈
+        </div>
+
+    </div>
+
+
+    <div class="class-title">
+
+        <h2>
+            🎒 Ayo Mulai Belajar!
+        </h2>
+
+        <span>
+            Pilih kelasmu
+        </span>
+
+    </div>
+
+
+    <div class="class-grid">
+
+
+        <!-- TK -->
+
+        <div class="class-card tk-card">
+
+            <div class="class-content">
+
+                <div class="class-icon">
+                    🧸
+                </div>
+
+                <h3>
+                    TK
+                </h3>
+
+                <p>
+                    Untuk anak usia dini<br>
+                    <b>(3 - 6 tahun)</b>
+                </p>
+
+                <button
+                    class="class-button"
+                    onclick="openClass('tk')"
+                >
+                    ▶ Masuk ke TK
+                </button>
+
+            </div>
+
+            <div class="class-decoration">
+                🌈
+            </div>
+
+        </div>
+
+
+        <!-- SD -->
+
+        <div class="class-card sd-card">
+
+            <div class="class-content">
+
+                <div class="class-icon">
+                    🎒
+                </div>
+
+                <h3>
+                    SD
+                </h3>
+
+                <p>
+                    Untuk anak sekolah dasar<br>
+                    <b>(7 - 12 tahun)</b>
+                </p>
+
+                <button
+                    class="class-button"
+                    onclick="openClass('sd')"
+                >
+                    ▶ Masuk ke SD
+                </button>
+
+            </div>
+
+            <div class="class-decoration">
+                ⭐
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- BENEFITS -->
+
+    <div class="benefits">
+
+        <div class="benefit">
+            <div class="benefit-icon">🏆</div>
+            <strong>Prestasi<br>Anak</strong>
+        </div>
+
+        <div class="benefit">
+            <div class="benefit-icon">📈</div>
+            <strong>Belajar<br>Lebih Seru</strong>
+        </div>
+
+        <div class="benefit">
+            <div class="benefit-icon">💖</div>
+            <strong>Meningkatkan<br>Konsentrasi</strong>
+        </div>
+
+        <div class="benefit">
+            <div class="benefit-icon">💡</div>
+            <strong>Melatih<br>Logika</strong>
+        </div>
+
+        <div class="benefit">
+            <div class="benefit-icon">⭐</div>
+            <strong>Membangun<br>Kepercayaan Diri</strong>
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ==================================================
+     GAME MENU
+================================================== -->
+
+<section id="gameMenuScreen" class="screen">
+
+    <div class="game-menu">
+
+        <div class="game-menu-header">
+
+            <button
+                class="back-button"
+                onclick="showDashboard()"
+            >
+                ←
+            </button>
+
+            <div>
+                <h2 id="gameMenuTitle">
+                    🎮 Permainan
+                </h2>
+
+                <p id="gameMenuSubtitle">
+                    Pilih permainan yang kamu suka
+                </p>
+            </div>
+
+        </div>
+
+        <div
+            id="gamesGrid"
+            class="games-grid"
+        ></div>
+
+    </div>
+
+</section>
+
+
+<!-- ==================================================
+     GAME PLAY
+================================================== -->
+
+<section id="gamePlayScreen" class="screen">
+
+    <div class="game-play">
+
+        <div class="game-top">
+
+            <button
+                class="back-button"
+                onclick="backToGameMenu()"
+            >
+                ←
+            </button>
+
+            <div class="game-progress">
+
+                <div class="progress-text">
+
+                    <span id="questionText">
+                        Soal 1
+                    </span>
+
+                    <span id="gameTitleSmall">
+                        Game
+                    </span>
+
+                </div>
+
+                <div class="progress-bg">
+
+                    <div
+                        id="progressBar"
+                        class="progress-bar"
+                    ></div>
+
+                </div>
+
+            </div>
+
+            <div class="score">
+                ⭐ <span id="scoreText">0</span>
+            </div>
+
+        </div>
+
+
+        <div
+            id="questionArea"
+            class="question"
+        ></div>
+
+    </div>
+
+</section>
+
+
+<!-- ==================================================
+     RESULT
+================================================== -->
+
+<section id="resultScreen" class="screen">
+
+    <div class="result">
+
+        <div class="trophy">
+            🏆
+        </div>
+
+        <h2>
+            Hebat Sekali! 🎉
+        </h2>
+
+        <p id="resultName">
+            Anak Hebat
+        </p>
+
+        <div
+            id="resultStars"
+            class="result-stars"
+        >
+            ⭐⭐⭐
+        </div>
+
+        <div
+            id="resultScore"
+            class="result-score"
+        >
+            0
+        </div>
+
+        <p id="resultMessage">
+            Kamu sudah menyelesaikan permainan!
+        </p>
+
+
+        <div class="result-buttons">
+
+            <button
+                class="result-button"
+                onclick="playAgain()"
+            >
+                🔄 Main Lagi
+            </button>
+
+            <button
+                class="result-button"
+                onclick="backToGameMenu()"
+            >
+                🎮 Pilih Game
+            </button>
+
+            <button
+                class="result-button"
+                onclick="showDashboard()"
+            >
+                🏠 Beranda
+            </button>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ==================================================
+     DATA
+================================================== -->
+
+<section id="dataScreen" class="screen">
+
+    <div class="data-page">
+
+        <div class="game-menu-header">
+
+            <button
+                class="back-button"
+                onclick="showDashboard()"
+            >
+                ←
+            </button>
+
+            <div>
+                <h2>📊 Data Hasil</h2>
+                <p>Riwayat permainan anak</p>
+            </div>
+
+        </div>
+
+        <div id="dataList"></div>
+
+    </div>
+
+</section>
+
+
+<!-- ==================================================
+     SETTINGS
+================================================== -->
+
+<section id="settingsScreen" class="screen">
+
+    <div class="data-page">
+
+        <div class="game-menu-header">
+
+            <button
+                class="back-button"
+                onclick="showDashboard()"
+            >
+                ←
+            </button>
+
+            <div>
+                <h2>⚙️ Pengaturan</h2>
+                <p>Atur data Rumah Belajar Anak</p>
+            </div>
+
+        </div>
+
+        <div class="data-item">
+
+            <strong>👧 Nama Anak</strong>
+
+            <br><br>
+
+            <input
+                id="settingName"
+                type="text"
+                placeholder="Masukkan nama anak"
+                style="
+                width:100%;
+                padding:14px;
+                border-radius:14px;
+                border:2px solid #e5eaf2;
+                font-size:16px;
+                "
+            >
+
+            <br><br>
+
+            <button
+                class="result-button"
+                onclick="changeName()"
+            >
+                💾 Simpan Nama
+            </button>
+
+        </div>
+
+
+        <div class="data-item">
+
+            <strong>
+                🗑️ Hapus Data Permainan
+            </strong>
+
+            <br><br>
+
+            <button
+                class="result-button"
+                onclick="clearRecords()"
+            >
+                Hapus Riwayat
+            </button>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+</main>
+
+
+<!-- ==================================================
+     RIGHT PANEL
+================================================== -->
+
+<aside class="right-panel">
+
+
+    <div class="info-card">
+
+        <h3>
+            📊 Data Singkat
+        </h3>
+
+        <div class="stats">
+
+            <div class="stat">
+
+                <div class="stat-icon">
+                    ⭐
+                </div>
+
+                <div>
+
+                    <small>Total Skor</small>
+
+                    <strong id="totalScore">
+                        0
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+            <div class="stat">
+
+                <div class="stat-icon">
+                    🎯
+                </div>
+
+                <div>
+
+                    <small>Permainan Selesai</small>
+
+                    <strong id="totalGames">
+                        0
+                    </strong>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div class="info-card">
+
+        <h3>
+            🔥 Game Populer
+        </h3>
+
+        <div class="popular">
+
+            <div
+                class="popular-item"
+                onclick="startGameDirect('angka','tk')"
+            >
+                🔢 Mengenal Angka
+            </div>
+
+            <div
+                class="popular-item"
+                onclick="startGameDirect('penjumlahan','sd')"
+            >
+                ➕ Penjumlahan
+            </div>
+
+            <div
+                class="popular-item"
+                onclick="startGameDirect('hewan','tk')"
+            >
+                🐾 Mengenal Hewan
+            </div>
+
+            <div
+                class="popular-item"
+                onclick="startGameDirect('suara','tk')"
+            >
+                🎵 Tebak Suara Hewan
+            </div>
+
+            <div
+                class="popular-item"
+                onclick="startGameDirect('perkalian','sd')"
+            >
+                ✖️ Perkalian
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div class="info-card quote-card">
+
+        <div class="quote-icon">
+            🌈
+        </div>
+
+        <h3>
+            Terus belajar!<br>
+            Jangan pernah<br>
+            menyerah! 💖
+        </h3>
+
+    </div>
+
+
+</aside>
+
+</div>
+
+
+<!-- ==================================================
+     FEEDBACK
+================================================== -->
+
+<div
+    id="feedback"
+    class="feedback"
+>
+
+    <div
+        id="feedbackIcon"
+        class="feedback-icon"
+    >
+        🎉
+    </div>
+
+    <h2 id="feedbackText">
+        Hebat!
+    </h2>
+
+</div>
+
+
+<script>
+
+/* ==================================================
+   DATA TK
+================================================== */
+
+const tkGames = [
+
+{
+id:"angka",
+icon:"🔢",
+title:"Mengenal Angka",
+desc:"Kenali angka dengan seru"
+},
+
+{
+id:"huruf",
+icon:"🔤",
+title:"Mengenal Huruf",
+desc:"Belajar mengenal huruf"
+},
+
+{
+id:"warna",
+icon:"🎨",
+title:"Mengenal Warna",
+desc:"Ayo tebak warna"
+},
+
+{
+id:"hewan",
+icon:"🐾",
+title:"Mengenal Hewan",
+desc:"Kenali berbagai hewan"
+},
+
+{
+id:"buah",
+icon:"🍎",
+title:"Mengenal Buah",
+desc:"Kenali nama buah"
+},
+
+{
+id:"bentuk",
+icon:"🔷",
+title:"Mengenal Bentuk",
+desc:"Belajar bentuk"
+},
+
+{
+id:"hitung",
+icon:"🍎",
+title:"Menghitung Benda",
+desc:"Hitung benda"
+},
+
+{
+id:"pasangan",
+icon:"🧩",
+title:"Pasangkan",
+desc:"Cari pasangan yang tepat"
+},
+
+{
+id:"sama",
+icon:"👀",
+title:"Cari yang Sama",
+desc:"Temukan gambar sama"
+},
+
+{
+id:"suara",
+icon:"🔊",
+title:"Tebak Suara Hewan",
+desc:"Dengarkan suara hewan"
+}
+
+];
+
+
+/* ==================================================
+   DATA SD
+================================================== */
+
+const sdGames = [
+
+{
+id:"penjumlahan",
+icon:"➕",
+title:"Penjumlahan",
+desc:"Latihan penjumlahan"
+},
+
+{
+id:"pengurangan",
+icon:"➖",
+title:"Pengurangan",
+desc:"Latihan pengurangan"
+},
+
+{
+id:"perkalian",
+icon:"✖️",
+title:"Perkalian",
+desc:"Latihan perkalian"
+},
+
+{
+id:"pembagian",
+icon:"➗",
+title:"Pembagian",
+desc:"Latihan pembagian"
+},
+
+{
+id:"susunkata",
+icon:"🔤",
+title:"Susun Kata",
+desc:"Susun kata"
+},
+
+{
+id:"sinonim",
+icon:"📝",
+title:"Sinonim",
+desc:"Cari kata searti"
+},
+
+{
+id:"antonim",
+icon:"🔄",
+title:"Antonim",
+desc:"Cari lawan kata"
+},
+
+{
+id:"cerita",
+icon:"📖",
+title:"Soal Cerita",
+desc:"Baca dan jawab"
+},
+
+{
+id:"kelipatan",
+icon:"🔢",
+title:"Kelipatan & Faktor",
+desc:"Latihan angka"
+},
+
+{
+id:"campuran",
+icon:"🧮",
+title:"Matematika Campuran",
+desc:"Tantangan berhitung"
+},
+
+{
+id:"pola",
+icon:"🧠",
+title:"Tebak Pola",
+desc:"Cari pola berikutnya"
+}
+
+];
+
+
+/* ==================================================
+   QUESTIONS TK
+================================================== */
+
+const tkQuestions={
+
+angka:[
+{
+q:"Angka berapa ini?",
+visual:"1️⃣",
+answer:"1",
+options:["1","2","3","4"]
+},
+{
+q:"Angka berapa ini?",
+visual:"2️⃣",
+answer:"2",
+options:["1","2","3","4"]
+},
+{
+q:"Angka berapa ini?",
+visual:"3️⃣",
+answer:"3",
+options:["2","3","4","5"]
+},
+{
+q:"Angka berapa ini?",
+visual:"4️⃣",
+answer:"4",
+options:["2","3","4","5"]
+},
+{
+q:"Angka berapa ini?",
+visual:"5️⃣",
+answer:"5",
+options:["3","4","5","6"]
+}
+],
+
+huruf:[
+{
+q:"Huruf apa ini?",
+visual:"A",
+answer:"A",
+options:["A","B","C","D"]
+},
+{
+q:"Huruf apa ini?",
+visual:"B",
+answer:"B",
+options:["A","B","C","D"]
+},
+{
+q:"Huruf apa ini?",
+visual:"C",
+answer:"C",
+options:["A","B","C","D"]
+},
+{
+q:"Huruf apa ini?",
+visual:"D",
+answer:"D",
+options:["A","B","C","D"]
+}
+],
+
+warna:[
+{
+q:"Warna apa ini?",
+visual:"🔴",
+answer:"Merah",
+options:["Merah","Biru","Hijau","Kuning"]
+},
+{
+q:"Warna apa ini?",
+visual:"🔵",
+answer:"Biru",
+options:["Merah","Biru","Hijau","Kuning"]
+},
+{
+q:"Warna apa ini?",
+visual:"🟢",
+answer:"Hijau",
+options:["Merah","Biru","Hijau","Kuning"]
+},
+{
+q:"Warna apa ini?",
+visual:"🟡",
+answer:"Kuning",
+options:["Merah","Biru","Hijau","Kuning"]
+}
+],
+
+hewan:[
+{
+q:"Hewan apa ini?",
+visual:"🐶",
+answer:"Anjing",
+options:["Kucing","Anjing","Sapi","Ayam"]
+},
+{
+q:"Hewan apa ini?",
+visual:"🐱",
+answer:"Kucing",
+options:["Kucing","Anjing","Sapi","Ayam"]
+},
+{
+q:"Hewan apa ini?",
+visual:"🐮",
+answer:"Sapi",
+options:["Kucing","Anjing","Sapi","Ayam"]
+},
+{
+q:"Hewan apa ini?",
+visual:"🐔",
+answer:"Ayam",
+options:["Kucing","Anjing","Sapi","Ayam"]
+}
+],
+
+buah:[
+{
+q:"Buah apa ini?",
+visual:"🍎",
+answer:"Apel",
+options:["Apel","Jeruk","Pisang","Anggur"]
+},
+{
+q:"Buah apa ini?",
+visual:"🍊",
+answer:"Jeruk",
+options:["Apel","Jeruk","Pisang","Anggur"]
+},
+{
+q:"Buah apa ini?",
+visual:"🍌",
+answer:"Pisang",
+options:["Apel","Jeruk","Pisang","Anggur"]
+},
+{
+q:"Buah apa ini?",
+visual:"🍇",
+answer:"Anggur",
+options:["Apel","Jeruk","Pisang","Anggur"]
+}
+],
+
+bentuk:[
+{
+q:"Bentuk apa ini?",
+visual:"🔵",
+answer:"Lingkaran",
+options:["Lingkaran","Persegi","Segitiga","Bintang"]
+},
+{
+q:"Bentuk apa ini?",
+visual:"🟥",
+answer:"Persegi",
+options:["Lingkaran","Persegi","Segitiga","Bintang"]
+},
+{
+q:"Bentuk apa ini?",
+visual:"🔺",
+answer:"Segitiga",
+options:["Lingkaran","Persegi","Segitiga","Bintang"]
+},
+{
+q:"Bentuk apa ini?",
+visual:"⭐",
+answer:"Bintang",
+options:["Lingkaran","Persegi","Segitiga","Bintang"]
+}
+],
+
+hitung:[
+{
+q:"Ada berapa apel?",
+visual:"🍎🍎",
+answer:"2",
+options:["1","2","3","4"]
+},
+{
+q:"Ada berapa apel?",
+visual:"🍎🍎🍎",
+answer:"3",
+options:["2","3","4","5"]
+},
+{
+q:"Ada berapa apel?",
+visual:"🍎🍎🍎🍎",
+answer:"4",
+options:["2","3","4","5"]
+},
+{
+q:"Ada berapa apel?",
+visual:"🍎🍎🍎🍎🍎",
+answer:"5",
+options:["3","4","5","6"]
+}
+],
+
+pasangan:[
+{
+q:"Pasangkan buah dengan namanya!",
+visual:"🍎",
+answer:"Apel",
+options:["Apel","Pisang","Jeruk","Anggur"]
+},
+{
+q:"Pasangkan buah dengan namanya!",
+visual:"🍌",
+answer:"Pisang",
+options:["Apel","Pisang","Jeruk","Anggur"]
+},
+{
+q:"Pasangkan buah dengan namanya!",
+visual:"🍊",
+answer:"Jeruk",
+options:["Apel","Pisang","Jeruk","Anggur"]
+},
+{
+q:"Pasangkan buah dengan namanya!",
+visual:"🍇",
+answer:"Anggur",
+options:["Apel","Pisang","Jeruk","Anggur"]
+}
+],
+
+sama:[
+{
+q:"Pilih gambar yang sama!",
+visual:"🐶",
+answer:"🐶",
+options:["🐱","🐶","🐮","🐔"]
+},
+{
+q:"Pilih gambar yang sama!",
+visual:"🍎",
+answer:"🍎",
+options:["🍌","🍊","🍎","🍇"]
+},
+{
+q:"Pilih gambar yang sama!",
+visual:"⭐",
+answer:"⭐",
+options:["❤️","🌙","⭐","☀️"]
+},
+{
+q:"Pilih gambar yang sama!",
+visual:"🔵",
+answer:"🔵",
+options:["🔺","🟩","🔵","⭐"]
+}
+]
+
+};
+
+
+/* ==================================================
+   QUESTIONS SD
+================================================== */
+
+const sdQuestions={
+
+penjumlahan:[
+{
+q:"5 + 3 = ?",
+answer:"8",
+options:["6","7","8","9"]
+},
+{
+q:"7 + 2 = ?",
+answer:"9",
+options:["8","9","10","11"]
+},
+{
+q:"6 + 4 = ?",
+answer:"10",
+options:["8","9","10","11"]
+},
+{
+q:"9 + 5 = ?",
+answer:"14",
+options:["12","13","14","15"]
+},
+{
+q:"8 + 7 = ?",
+answer:"15",
+options:["13","14","15","16"]
+}
+],
+
+pengurangan:[
+{
+q:"9 - 3 = ?",
+answer:"6",
+options:["5","6","7","8"]
+},
+{
+q:"10 - 4 = ?",
+answer:"6",
+options:["5","6","7","8"]
+},
+{
+q:"12 - 5 = ?",
+answer:"7",
+options:["6","7","8","9"]
+},
+{
+q:"15 - 6 = ?",
+answer:"9",
+options:["8","9","10","11"]
+}
+],
+
+perkalian:[
+{
+q:"2 × 3 = ?",
+answer:"6",
+options:["5","6","7","8"]
+},
+{
+q:"3 × 4 = ?",
+answer:"12",
+options:["10","11","12","13"]
+},
+{
+q:"5 × 2 = ?",
+answer:"10",
+options:["8","9","10","11"]
+},
+{
+q:"4 × 5 = ?",
+answer:"20",
+options:["18","19","20","21"]
+}
+],
+
+pembagian:[
+{
+q:"6 ÷ 2 = ?",
+answer:"3",
+options:["2","3","4","5"]
+},
+{
+q:"10 ÷ 2 = ?",
+answer:"5",
+options:["4","5","6","7"]
+},
+{
+q:"12 ÷ 3 = ?",
+answer:"4",
+options:["3","4","5","6"]
+},
+{
+q:"20 ÷ 4 = ?",
+answer:"5",
+options:["3","4","5","6"]
+}
+],
+
+susunkata:[
+{
+q:"Susun kata: YA - SA",
+answer:"SAYA",
+options:["SAYA","AYAS","YASA","ASAY"]
+},
+{
+q:"Susun kata: KU - BU",
+answer:"BUKU",
+options:["KUBU","BUKU","UKUB","UBUK"]
+},
+{
+q:"Susun kata: PI - SA",
+answer:"SAPI",
+options:["SAPI","PISA","IPAS","ASPI"]
+}
+],
+
+sinonim:[
+{
+q:"Sinonim kata SENANG adalah...",
+answer:"Gembira",
+options:["Sedih","Gembira","Marah","Takut"]
+},
+{
+q:"Sinonim kata CEPAT adalah...",
+answer:"Lekas",
+options:["Lambat","Lekas","Diam","Jauh"]
+},
+{
+q:"Sinonim kata INDAH adalah...",
+answer:"Cantik",
+options:["Jelek","Kecil","Cantik","Kotor"]
+}
+],
+
+antonim:[
+{
+q:"Lawan kata BESAR adalah...",
+answer:"Kecil",
+options:["Tinggi","Kecil","Panjang","Lebar"]
+},
+{
+q:"Lawan kata PANAS adalah...",
+answer:"Dingin",
+options:["Hangat","Dingin","Terang","Gelap"]
+},
+{
+q:"Lawan kata CEPAT adalah...",
+answer:"Lambat",
+options:["Lekas","Lambat","Kuat","Jauh"]
+}
+],
+
+cerita:[
+{
+q:"Budi punya 5 apel. Ibu memberi 3 apel lagi. Berapa apel Budi sekarang?",
+answer:"8",
+options:["6","7","8","9"]
+},
+{
+q:"Ani punya 10 permen. Ia memberikan 4 kepada adiknya. Sisa permen Ani?",
+answer:"6",
+options:["5","6","7","8"]
+},
+{
+q:"Ada 3 kotak. Setiap kotak berisi 2 pensil. Berapa jumlah pensil?",
+answer:"6",
+options:["4","5","6","7"]
+}
+],
+
+kelipatan:[
+{
+q:"Manakah yang merupakan kelipatan 2?",
+answer:"8",
+options:["7","8","9","11"]
+},
+{
+q:"Manakah yang merupakan kelipatan 5?",
+answer:"15",
+options:["12","13","14","15"]
+},
+{
+q:"Manakah yang merupakan faktor dari 12?",
+answer:"3",
+options:["3","5","7","11"]
+}
+],
+
+campuran:[
+{
+q:"5 + 4 × 2 = ?",
+answer:"13",
+options:["13","18","10","9"]
+},
+{
+q:"20 - 5 + 3 = ?",
+answer:"18",
+options:["16","17","18","19"]
+},
+{
+q:"6 × 2 - 4 = ?",
+answer:"8",
+options:["6","7","8","9"]
+}
+],
+
+pola:[
+{
+q:"Pola: 2, 4, 6, 8, ...",
+answer:"10",
+options:["9","10","11","12"]
+},
+{
+q:"Pola: 5, 10, 15, 20, ...",
+answer:"25",
+options:["22","23","24","25"]
+},
+{
+q:"Pola: 10, 8, 6, 4, ...",
+answer:"2",
+options:["1","2","3","4"]
+}
+]
+
+};
+
+
+/* ==================================================
+   SUARA HEWAN
+================================================== */
+
+const animalSounds=[
+
+{
+name:"Anjing",
+emoji:"🐶",
+answer:"Anjing",
+audio:"https://sfxmint.com/dl/animal-dog-bark-25.mp3"
+},
+
+{
+name:"Kucing",
+emoji:"🐱",
+answer:"Kucing",
+audio:"https://sfxmint.com/dl/animal-cat-meow-34.mp3"
+},
+
+{
+name:"Sapi",
+emoji:"🐮",
+answer:"Sapi",
+audio:"https://sfxmint.com/dl/cow-moo-02.mp3"
+},
+
+{
+name:"Ayam",
+emoji:"🐔",
+answer:"Ayam",
+audio:"https://sfxmint.com/dl/hen-cluck-02.mp3"
+},
+
+{
+name:"Kuda",
+emoji:"🐴",
+answer:"Kuda",
+audio:"https://sfxmint.com/dl/horse-neigh-03.mp3"
+}
+
+];
+
+
+/* ==================================================
+   VARIABLES
+================================================== */
+
+let childName =
+localStorage.getItem("rumahBelajarName") ||
+"Anak Hebat";
+
+let currentMode="tk";
+
+let currentGame="";
+
+let questions=[];
+
+let questionIndex=0;
+
+let score=0;
+
+let locked=false;
+
+let currentAudio=null;
+
+
+/* ==================================================
+   SCREEN
+================================================== */
+
+function hideAllScreens(){
+
+    document.querySelectorAll(".screen")
+    .forEach(x=>{
+        x.classList.remove("active");
+    });
+
+}
+
+
+function showDashboard(){
+
+    stopAnimalSound();
+
+    hideAllScreens();
+
+    document
+    .getElementById("dashboardScreen")
+    .classList.add("active");
+
+    updateDashboard();
+
+    window.scrollTo(0,0);
+
+}
+
+
+/* ==================================================
+   UPDATE DASHBOARD
+================================================== */
+
+function updateDashboard(){
+
+    document
+    .getElementById("profileName")
+    .textContent=childName;
+
+    document
+    .getElementById("welcomeText")
+    .textContent=
+    "Halo "+childName+"! Yuk pilih kelas dan mulai belajar!";
+
+    const records=
+    JSON.parse(
+        localStorage.getItem(
+            "rumahBelajarRecords"
+        )||"[]"
+    );
+
+    let totalScore=0;
+
+    records.forEach(r=>{
+        totalScore+=Number(r.score)||0;
+    });
+
+    document
+    .getElementById("totalScore")
+    .textContent=totalScore;
+
+    document
+    .getElementById("totalGames")
+    .textContent=records.length;
+
+}
+
+
+/* ==================================================
+   CLASS MENU
+================================================== */
+
+function openClass(mode){
+
+    currentMode=mode;
+
+    renderGameMenu();
+
+}
+
+
+function openAllGames(){
+
+    currentMode="tk";
+
+    renderGameMenu();
+
+}
+
+
+function renderGameMenu(){
+
+    hideAllScreens();
+
+    document
+    .getElementById("gameMenuScreen")
+    .classList.add("active");
+
+    const games=
+    currentMode==="tk"
+    ?tkGames
+    :sdGames;
+
+    document
+    .getElementById("gameMenuTitle")
+    .textContent=
+    currentMode==="tk"
+    ?"🧸 Permainan TK"
+    :"🎒 Permainan SD";
+
+    document
+    .getElementById("gameMenuSubtitle")
+    .textContent=
+    currentMode==="tk"
+    ?"Belajar sambil bermain untuk anak TK"
+    :"Ayo asah kemampuan untuk anak SD";
+
+    const grid=
+    document.getElementById("gamesGrid");
+
+    grid.innerHTML="";
+
+    games.forEach(game=>{
+
+        const button=
+        document.createElement("button");
+
+        button.className="game-card";
+
+        button.innerHTML=`
+
+            <div class="game-card-icon">
+                ${game.icon}
+            </div>
+
+            <h3>
+                ${game.title}
+            </h3>
+
+            <p>
+                ${game.desc}
+            </p>
+
+        `;
+
+        button.onclick=()=>{
+            startGame(game.id);
+        };
+
+        grid.appendChild(button);
+
+    });
+
+    window.scrollTo(0,0);
+
+}
+
+
+/* ==================================================
+   DIRECT GAME
+================================================== */
+
+function startGameDirect(id,mode){
+
+    currentMode=mode;
+
+    startGame(id);
+
+}
+
+
+/* ==================================================
+   START GAME
+================================================== */
+
+function startGame(id){
+
+    currentGame=id;
+
+    questionIndex=0;
+
+    score=0;
+
+    locked=false;
+
+    stopAnimalSound();
+
+    if(
+        currentMode==="tk" &&
+        id==="suara"
+    ){
+
+        questions=
+        animalSounds.map(x=>({...x}));
+
+    }
+
+    else if(currentMode==="tk"){
+
+        questions=
+        (tkQuestions[id]||[])
+        .map(x=>({...x}));
+
+    }
+
+    else{
+
+        questions=
+        (sdQuestions[id]||[])
+        .map(x=>({...x}));
+
+    }
+
+    shuffle(questions);
+
+    hideAllScreens();
+
+    document
+    .getElementById("gamePlayScreen")
+    .classList.add("active");
+
+    renderQuestion();
+
+    window.scrollTo(0,0);
+
+}
+
+
+/* ==================================================
+   RENDER QUESTION
+================================================== */
+
+function renderQuestion(){
+
+    if(questionIndex>=questions.length){
+
+        finishGame();
+
+        return;
+    }
+
+    locked=false;
+
+    const q=questions[questionIndex];
+
+    const total=questions.length;
+
+    const progress=
+    (questionIndex/total)*100;
+
+    document
+    .getElementById("progressBar")
+    .style.width=
+    progress+"%";
+
+    document
+    .getElementById("questionText")
+    .textContent=
+    "Soal "+(questionIndex+1)+" dari "+total;
+
+    document
+    .getElementById("scoreText")
+    .textContent=score;
+
+    const allGames=
+    [...tkGames,...sdGames];
+
+    const info=
+    allGames.find(x=>x.id===currentGame);
+
+    document
+    .getElementById("gameTitleSmall")
+    .textContent=
+    info?info.title:"Permainan";
+
+
+    if(
+        currentMode==="tk" &&
+        currentGame==="suara"
+    ){
+
+        renderAnimalSound(q);
+
+        return;
+
+    }
+
+
+    let visual="";
+
+    if(q.visual){
+
+        visual=`
+            <div class="visual">
+                ${q.visual}
+            </div>
+        `;
+
+    }
+
+
+    let options="";
+
+    q.options.forEach(option=>{
+
+        options+=`
+
+            <button
+                class="option"
+                onclick="chooseAnswer(this,${JSON.stringify(option)})"
+            >
+                ${option}
+            </button>
+
+        `;
+
+    });
+
+
+    document
+    .getElementById("questionArea")
+    .innerHTML=`
+
+        ${visual}
+
+        <h2>
+            ${q.q}
+        </h2>
+
+        <div class="options">
+            ${options}
+        </div>
+
+    `;
+
+}
+
+
+/* ==================================================
+   ANIMAL SOUND GAME
+================================================== */
+
+function renderAnimalSound(q){
+
+    let options="";
+
+    animalSounds.forEach(animal=>{
+
+        options+=`
+
+            <button
+                class="option"
+                onclick="chooseAnswer(this,${JSON.stringify(animal.answer)})"
+            >
+                ${animal.emoji}<br>
+                ${animal.name}
+            </button>
+
+        `;
+
+    });
+
+
+    document
+    .getElementById("questionArea")
+    .innerHTML=`
+
+        <div class="visual">
+            🔊🐾
+        </div>
+
+        <h2>
+            Hewan apa yang mengeluarkan suara ini?
+        </h2>
+
+        <div class="options">
+            ${options}
+        </div>
+
+        <button
+            class="sound-button"
+            onclick="playAnimalSound()"
+        >
+            🔊 Dengarkan Suara Lagi
+        </button>
+
+        <div
+            id="soundStatus"
+            class="sound-status"
+        >
+            Dengarkan suara lalu pilih jawabannya.
+        </div>
+
+    `;
+
+
+    setTimeout(
+        playAnimalSound,
+        300
+    );
+
+}
+
+
+/* ==================================================
+   PLAY ANIMAL SOUND
+================================================== */
+
+function playAnimalSound(){
+
+    const q=
+    questions[questionIndex];
+
+    if(!q || !q.audio){
+
+        return;
+    }
+
+    stopAnimalSound();
+
+    currentAudio=
+    new Audio(q.audio);
+
+    currentAudio.volume=1;
+
+    const status=
+    document.getElementById("soundStatus");
+
+    if(status){
+
+        status.textContent=
+        "🔊 Suara sedang diputar...";
+
+    }
+
+    currentAudio
+    .play()
+    .catch(()=>{
+
+        if(status){
+
+            status.textContent=
+            "⚠️ Tekan tombol sekali lagi untuk memutar suara.";
+
+        }
+
+    });
+
+}
+
+
+/* ==================================================
+   STOP SOUND
+================================================== */
+
+function stopAnimalSound(){
+
+    if(currentAudio){
+
+        try{
+
+            currentAudio.pause();
+
+            currentAudio.currentTime=0;
+
+        }catch(e){}
+
+        currentAudio=null;
+
+    }
+
+}
+
+
+/* ==================================================
+   ANSWER
+================================================== */
+
+function chooseAnswer(button,value){
+
+    if(locked){
+
+        return;
+
+    }
+
+    locked=true;
+
+    const q=
+    questions[questionIndex];
+
+    document
+    .querySelectorAll(".option")
+    .forEach(btn=>{
+        btn.disabled=true;
+    });
+
+
+    if(
+        String(value)===
+        String(q.answer)
+    ){
+
+        button.classList.add("correct");
+
+        score+=10;
+
+        document
+        .getElementById("scoreText")
+        .textContent=score;
+
+        showFeedback(
+            "🎉",
+            "HORE! KAMU BENAR!"
+        );
+
+        correctBeep();
+
+        setTimeout(
+            nextQuestion,
+            1100
+        );
+
+    }
+
+    else{
+
+        button.classList.add("wrong");
+
+        document
+        .querySelectorAll(".option")
+        .forEach(btn=>{
+
+            if(
+                btn.textContent
+                .trim()
+                ===
+                String(q.answer)
+            ){
+
+                btn.classList.add("correct");
+
+            }
+
+        });
+
+        showFeedback(
+            "😊",
+            "Belum tepat, coba lagi!"
+        );
+
+        wrongBeep();
+
+        setTimeout(
+            nextQuestion,
+            1300
+        );
+
+    }
+
+}
+
+
+/* ==================================================
+   NEXT
+================================================== */
+
+function nextQuestion(){
+
+    hideFeedback();
+
+    questionIndex++;
+
+    renderQuestion();
+
+}
+
+
+/* ==================================================
+   FINISH
+================================================== */
+
+function finishGame(){
+
+    stopAnimalSound();
+
+    document
+    .getElementById("progressBar")
+    .style.width="100%";
+
+    const total=
+    questions.length*10;
+
+    let stars="⭐⭐";
+
+    if(score>=total*.8){
+
+        stars="⭐⭐⭐⭐⭐";
+
+    }
+    else if(score>=total*.6){
+
+        stars="⭐⭐⭐⭐";
+
+    }
+    else if(score>=total*.4){
+
+        stars="⭐⭐⭐";
+
+    }
+
+
+    document
+    .getElementById("resultName")
+    .textContent=
+    childName;
+
+    document
+    .getElementById("resultScore")
+    .textContent=
+    score+" / "+total;
+
+    document
+    .getElementById("resultStars")
+    .textContent=
+    stars;
+
+    document
+    .getElementById("resultMessage")
+    .textContent=
+    score>=total*.8
+    ?"Luar biasa! Kamu sangat hebat! 🌟"
+    :"Hebat! Terus latihan ya! 💪";
+
+    saveRecord();
+
+    updateDashboard();
+
+    createConfetti();
+
+    hideAllScreens();
+
+    document
+    .getElementById("resultScreen")
+    .classList.add("active");
+
+    victoryBeep();
+
+}
+
+
+/* ==================================================
+   PLAY AGAIN
+================================================== */
+
+function playAgain(){
+
+    startGame(currentGame);
+
+}
+
+
+/* ==================================================
+   BACK
+================================================== */
+
+function backToGameMenu(){
+
+    stopAnimalSound();
+
+    renderGameMenu();
+
+}
+
+
+/* ==================================================
+   FEEDBACK
+================================================== */
+
+function showFeedback(icon,text){
+
+    document
+    .getElementById("feedbackIcon")
+    .textContent=icon;
+
+    document
+    .getElementById("feedbackText")
+    .textContent=text;
+
+    document
+    .getElementById("feedback")
+    .classList.add("show");
+
+}
+
+
+function hideFeedback(){
+
+    document
+    .getElementById("feedback")
+    .classList.remove("show");
+
+}
+
+
+/* ==================================================
+   SIMPLE SOUND EFFECT
+   BUKAN SUARA BACA SOAL
+================================================== */
+
+let audioCtx=null;
+
+
+function getAudioContext(){
+
+    if(!audioCtx){
+
+        try{
+
+            audioCtx=
+            new(
+                window.AudioContext||
+                window.webkitAudioContext
+            )();
+
+        }catch(e){
+
+            return null;
+
+        }
+
+    }
+
+    return audioCtx;
+
+}
+
+
+function beep(freq,duration){
+
+    const ctx=
+    getAudioContext();
+
+    if(!ctx){
+
+        return;
+
+    }
+
+    try{
+
+        if(ctx.state==="suspended"){
+
+            ctx.resume();
+
+        }
+
+        const osc=
+        ctx.createOscillator();
+
+        const gain=
+        ctx.createGain();
+
+        osc.frequency.value=freq;
+
+        osc.type="sine";
+
+        gain.gain.setValueAtTime(
+            .001,
+            ctx.currentTime
+        );
+
+        gain.gain.exponentialRampToValueAtTime(
+            .22,
+            ctx.currentTime+.02
+        );
+
+        gain.gain.exponentialRampToValueAtTime(
+            .001,
+            ctx.currentTime+duration
+        );
+
+        osc.connect(gain);
+
+        gain.connect(ctx.destination);
+
+        osc.start();
+
+        osc.stop(
+            ctx.currentTime+duration
+        );
+
+    }catch(e){}
+
+}
+
+
+function correctBeep(){
+
+    beep(660,.12);
+
+    setTimeout(
+        ()=>beep(880,.16),
+        130
+    );
+
+}
+
+
+function wrongBeep(){
+
+    beep(180,.22);
+
+}
+
+
+function victoryBeep(){
+
+    beep(523,.13);
+
+    setTimeout(
+        ()=>beep(659,.13),
+        140
+    );
+
+    setTimeout(
+        ()=>beep(784,.22),
+        280
+    );
+
+}
+
+
+/* ==================================================
+   RECORD
+================================================== */
+
+function saveRecord(){
+
+    const records=
+    JSON.parse(
+        localStorage.getItem(
+            "rumahBelajarRecords"
+        )||"[]"
+    );
+
+    const allGames=
+    [...tkGames,...sdGames];
+
+    const info=
+    allGames.find(x=>x.id===currentGame);
+
+    records.unshift({
+
+        name:childName,
+
+        game:
+        info?info.title:currentGame,
+
+        score:score,
+
+        total:questions.length*10,
+
+        date:new Date()
+        .toLocaleString("id-ID")
+
+    });
+
+    if(records.length>100){
+
+        records.length=100;
+
+    }
+
+    localStorage.setItem(
+        "rumahBelajarRecords",
+        JSON.stringify(records)
+    );
+
+}
+
+
+/* ==================================================
+   DATA PAGE
+================================================== */
+
+function showData(){
+
+    hideAllScreens();
+
+    const box=
+    document.getElementById("dataList");
+
+    const records=
+    JSON.parse(
+        localStorage.getItem(
+            "rumahBelajarRecords"
+        )||"[]"
+    );
+
+
+    if(!records.length){
+
+        box.innerHTML=`
+
+            <div class="empty-data">
+                📚<br><br>
+                Belum ada permainan selesai.<br>
+                Yuk mulai bermain!
+            </div>
+
+        `;
+
+    }
+    else{
+
+        box.innerHTML=
+        records.map(record=>`
+
+            <div class="data-item">
+
+                👧
+                <strong>
+                    ${escapeHTML(record.name)}
+                </strong>
+
+                <br><br>
+
+                🎮
+                ${escapeHTML(record.game)}
+
+                <br>
+
+                ⭐
+                Skor:
+                <strong>
+                    ${record.score}/${record.total}
+                </strong>
+
+                <br>
+
+                📅
+                ${escapeHTML(record.date)}
+
+            </div>
+
+        `).join("");
+
+    }
+
+
+    document
+    .getElementById("dataScreen")
+    .classList.add("active");
+
+}
+
+
+/* ==================================================
+   SETTINGS
+================================================== */
+
+function showSettings(){
+
+    hideAllScreens();
+
+    document
+    .getElementById("settingName")
+    .value=childName;
+
+    document
+    .getElementById("settingsScreen")
+    .classList.add("active");
+
+}
+
+
+function changeName(){
+
+    const value=
+    document
+    .getElementById("settingName")
+    .value
+    .trim();
+
+    if(value){
+
+        childName=value;
+
+        localStorage.setItem(
+            "rumahBelajarName",
+            childName
+        );
+
+    }
+
+    updateDashboard();
+
+    showDashboard();
+
+}
+
+
+/* ==================================================
+   CLEAR RECORD
+================================================== */
+
+function clearRecords(){
+
+    const ok=
+    confirm(
+        "Hapus semua riwayat permainan?"
+    );
+
+    if(!ok){
+
+        return;
+
+    }
+
+    localStorage.removeItem(
+        "rumahBelajarRecords"
+    );
+
+    updateDashboard();
+
+    showSettings();
+
+}
+
+
+/* ==================================================
+   CONFETTI
+================================================== */
+
+function createConfetti(){
+
+    const items=[
+        "🎉",
+        "🎊",
+        "⭐",
+        "🌟",
+        "💖",
+        "✨",
+        "🎈",
+        "🌈"
+    ];
+
+    for(let i=0;i<35;i++){
+
+        const el=
+        document.createElement("div");
+
+        el.className="confetti";
+
+        el.textContent=
+        items[
+            Math.floor(
+                Math.random()*items.length
+            )
+        ];
+
+        el.style.left=
+        Math.random()*100+"vw";
+
+        el.style.animationDuration=
+        (2+Math.random()*2)+"s";
+
+        el.style.animationDelay=
+        Math.random()*.5+"s";
+
+        document.body.appendChild(el);
+
+        setTimeout(
+            ()=>el.remove(),
+            5000
+        );
+
+    }
+
+}
+
+
+/* ==================================================
+   SHUFFLE
+================================================== */
+
+function shuffle(array){
+
+    for(
+        let i=array.length-1;
+        i>0;
+        i--
+    ){
+
+        const j=
+        Math.floor(
+            Math.random()*(i+1)
+        );
+
+        [
+            array[i],
+            array[j]
+        ]=[
+            array[j],
+            array[i]
+        ];
+
+    }
+
+}
+
+
+/* ==================================================
+   ESCAPE
+================================================== */
+
+function escapeHTML(value){
+
+    return String(value)
+    .replace(/&/g,"&amp;")
+    .replace(/</g,"&lt;")
+    .replace(/>/g,"&gt;")
+    .replace(/"/g,"&quot;")
+    .replace(/'/g,"&#039;");
+
+}
+
+
+/* ==================================================
+   STARTUP
+================================================== */
+
+document.addEventListener(
+    "DOMContentLoaded",
+    ()=>{
+
+        updateDashboard();
+
+    }
+);
+
+</script>
+
+</body>
+</html>
